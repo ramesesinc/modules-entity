@@ -1,0 +1,10 @@
+<folders>
+    <folder id="explorer">
+        <folder id="master">
+            <folder id="entity" caption="Entities"/>     
+        </folder>        
+        <folder id="report" caption="Reports">
+            <folder id="entity" caption="Entity"/>
+        </folder>
+    </folder> 
+</folders>

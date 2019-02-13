@@ -1,0 +1,15 @@
+<workunit>
+    <invokers>
+        
+        
+        <invoker type="formActions" caption="Change Name" action="back" />
+    </invokers>
+    
+   <code class="com.rameses.entity.models.NewJuridicalEntityModel" />
+
+   <pages>
+       <page template="com.rameses.entity.views.JuridicalEntityEnterNamePage"/>
+       <page name="entry"  template="com.rameses.entity.views.JuridicalEntityPage"/>
+   </pages>   
+   
+</workunit>

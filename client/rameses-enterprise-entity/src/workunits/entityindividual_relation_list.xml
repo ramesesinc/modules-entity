@@ -1,0 +1,9 @@
+<workunit extends="com/rameses/seti2/templates/CrudList.xml" 
+          schemaName="vw_entity_relation" entitySchemaName="entity_relation"
+          cols="entityno,lastname,firstname,middlename,birthdate,relationship"
+          hiddenCols="entityid">
+    <invokers>
+        <invoker type="entityindividual:section" caption="Relationships" index="200" action="init"/>
+    </invokers>
+    <code class="com.rameses.entity.models.EntityIndividualRelationListModel" />
+</workunit>
