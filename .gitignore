@@ -16,3 +16,9 @@ Thumbs.db
 /**/nbproject/groovy-build.xml
 /**/.terminal
 /**/Thumbs.db
+/client/rameses-enterprise-entity/nbproject/private/
+/client/rameses-gov-etracs-entity/nbproject/private/
+/client/rameses-enterprise-entity/build/
+/client/rameses-enterprise-entity/dist/
+/client/rameses-gov-etracs-entity/build/
+/client/rameses-gov-etracs-entity/dist/
