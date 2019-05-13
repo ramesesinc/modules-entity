@@ -1,4 +1,4 @@
-<schema adapter="main">
+<schema adapter="entitydb">
 	
 	<element  tablename="entityindividual" extends="entity">
 		<field name="objid" required="true" primary="true" prefix="IND"/>

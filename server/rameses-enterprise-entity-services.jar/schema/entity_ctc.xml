@@ -1,4 +1,4 @@
-<schema adapter="main">
+<schema adapter="entitydb">
 	
 	<element tablename="entity_ctc">
 		<field name="objid" primary="true" prefix="EPH"/>

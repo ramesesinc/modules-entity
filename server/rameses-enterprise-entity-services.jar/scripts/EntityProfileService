@@ -1,0 +1,57 @@
+import com.rameses.annotations.*;
+import com.rameses.util.*;
+
+class EntityProfileService {
+
+	@DataContext('entityprofile') 
+	def profileEm; 
+
+	@DataContext('entityindividual') 
+	def indvEm; 
+
+	@DataContext('entity_online_registration') 
+	def regEm; 
+
+	@Service(value="SmtpService", connection="email-sms-server")
+	def smtpSvc;
+
+	@DataContext('vw_entityprofile') 
+	def vwProfileEm;
+
+	@Env
+	def env;
+
+	@ProxyMethod 
+	public def create( def o ) {
+		def idno  = o.entityno;
+		if( !idno.startsWith(env.ORGID)) {
+			idno = env.ORGID + "-" + idno;
+		}
+		def p = [:];
+		p.objid = o.objid;
+		p.primaryentityid = o.objid;
+		p.name = o.name;
+		p.idno = idno;
+		p = profileEm.create(p);
+		indvEm.find( [objid: o.objid] ).update([profileid: p.objid]);
+
+		def email = indvEm.find( [objid: p.primaryentityid ] ).select("email").val()
+		if( o.regid && email ) {
+			regEm.find( [objid: o.regid ]).delete();
+			def m = [:];
+			m.to = email;
+			m.subject = "Profile Account Created";
+			m.message = "Your account was successfully created. Please use the ff. id no:" + idno ;
+			smtpSvc.send( m );
+		}
+	} 
+
+	@ProxyMethod
+	public def findByIdno( def p ) {
+		if(!p.idno) throw new Exception("Please specify an idno");
+		def pp = vwProfileEm.find( [idno: p.idno] ).first();
+		if(!pp) throw new Exception("Profile not found");
+		return pp;
+	}
+
+}

@@ -1,0 +1,47 @@
+import com.rameses.annotations.*;
+import com.rameses.util.*;
+
+class EntityOnlineRegistrationService {
+
+	@DataContext('entity_online_registration') 
+	def em; 
+
+	@Service(value="SmtpService", connection="email-sms-server")
+	def smtpSvc;
+
+	@Service("DateService")
+	def dateSvc;
+
+	@ProxyMethod 
+	public void create( def o ) { 
+		em.create( o );
+	} 
+
+	@ProxyMethod 
+	public def sendRequest( def o ) {
+		o.dtregistered = dateSvc.getServerDate();
+		if(o.idphoto) {
+			def r = o.idphoto;
+			int j = r.indexOf( "base64," );
+			if( j > 0 ) {
+			    r = r.substring( j + "base64,".length() );
+			}
+			def b64 = new com.rameses.util.Base64Cipher();
+			o.idphoto = b64.decode( r, false );
+		}
+		return em.create( o );
+	} 
+
+	@ProxyMethod 
+	public def register( def o ) {
+		def i = "I1730001";
+		def msg = "Your registration was accepted. Your entity no is " + i;
+		if( o.email ) {
+			def m = [to: o.email, subject: 'Registration ', message: msg ];
+			smtpSvc.send( m );
+		}
+		return [entityno: i ];
+	} 
+
+
+}

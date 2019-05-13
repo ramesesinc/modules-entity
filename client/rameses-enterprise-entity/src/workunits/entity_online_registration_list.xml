@@ -1,0 +1,11 @@
+<workunit extends="com/rameses/seti2/templates/CrudList.xml" 
+          schemaName="entity_online_registration" 
+          allowCreate="false" allowRemove="false"> 
+
+    <invokers>
+        <invoker folderid="/home/entity" action="init" 
+                     caption="Online Registration List" index="-50" 
+                     role="MASTER"  
+                     cols="lastname,firstname,middlename,birthdate,dtregistered" />
+    </invokers>
+</workunit>

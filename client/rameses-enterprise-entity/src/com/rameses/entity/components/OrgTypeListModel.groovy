@@ -8,7 +8,9 @@ import com.rameses.seti2.models.*;
 
 class OrgTypeListModel extends ComponentBean {
 
-    def orgTypes = LOV.ORG_TYPES;
+    public def getOrgTypes() {
+        return LOV.get("ORG_TYPES", "entity");
+    }
     
     public void setOrgType(def ot) {
         setValue( ot );

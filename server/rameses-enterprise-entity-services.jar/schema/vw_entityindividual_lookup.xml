@@ -1,4 +1,4 @@
-<schema>
+<schema adapter="entitydb">
 	<element tablename="vw_entityindividual_lookup">
 		<field name="objid" primary="true"/>
 		<field name="entityno" caption="EntityNo"/>

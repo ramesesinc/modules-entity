@@ -8,7 +8,7 @@ class ReconcileEntityService  {
 	@Service("EntityService")
 	def entitySvc;
 
-	@ActiveDB(value='entity_reconciled', em='entity')
+	@ActiveDB(value='entity_reconciled', em='entitydb')
 	def em;
 
 	/**

@@ -8,11 +8,21 @@ import com.rameses.seti2.models.*;
 
 class IndividualEntityMatchNameModel extends ComponentBean {
 
-    @Service("IndividualEntityNameMatchService")
-    def matchService;
-
-    @Service("QueryService")
-    def qryService;
+    def _matchService = null;
+    def getMatchService() {
+        if(!_matchService) {
+            _matchService= InvokerProxy.getInstance().create("IndividualEntityNameMatchService", null, "entity");
+        }
+        return _matchService;
+    }
+    
+    def _qryService;
+    def getQryService() {
+        if(!_qryService) {
+            _qryService= InvokerProxy.getInstance().create("QueryService", null, "entity");
+        }
+        return _qryService;
+    }
     
     def caller;
     

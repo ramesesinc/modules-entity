@@ -34,7 +34,7 @@ FROM entity_relation er
 INNER JOIN vw_entityindividual ei ON er.entity_objid = ei.objid
 INNER JOIN entity_relation_type et ON er.relation_objid = et.objid 
 --> 
-<schema>
+<schema adapter="entitydb">
 	
 	<element tablename="vw_entity_relation">
 		<field name="objid" primary="true"/>

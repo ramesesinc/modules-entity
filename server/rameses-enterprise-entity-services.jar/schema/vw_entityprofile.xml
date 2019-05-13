@@ -1,0 +1,31 @@
+<schema adapter="entitydb">
+	<element tablename="vw_entityprofile">
+		<field name="objid" primary="true"/>
+		<field name="idno" caption="Profile ID No"/>
+		<field name="entityno" caption="Entity No"/>
+
+		<field name="primaryentityid" caption="Primary Entity Id"/>
+		<field name="name" hidden="true" visible="false" selectable="false" searchable="true"/>
+		<field name="lastname" caption="LastName" indexed="true"/>
+		<field name="firstname" caption="FirstName" indexed="true"/>
+		<field name="middlename" caption="MiddleName" /> 
+		<field name="birthdate" caption="BirthDate" hidden="true" visible="false" selectable="false" />
+		<field name="gender" caption="Gender" hidden="true" visible="false" selectable="false" />
+		<field name="mobileno" caption="MobileNo" hidden="true" visible="false" selectable="false" />
+		<field name="phoneno" caption="PhoneNo" hidden="true" visible="false" selectable="false" />
+		<field name="email" caption="Email" />
+		<field name="address_objid" hidden="true" visible="false" selectable="false"/>
+		<field name="address_text" caption="Address" selectable="false"/>
+		<field name="address_addresstype" />
+		<field name="address_barangay_name" />
+		<field name="address_barangay_objid" />
+		<field name="address_city" />
+		<field name="address_province" />
+		<field name="address_municipality" />
+		<field name="address_bldgno" />
+		<field name="address_bldgname" />
+		<field name="address_unitno" />
+		<field name="address_street" />
+		<field name="address_subdivision" />
+	</element>	
+</schema>

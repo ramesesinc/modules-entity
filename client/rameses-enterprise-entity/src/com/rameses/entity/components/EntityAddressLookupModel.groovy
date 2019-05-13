@@ -13,8 +13,13 @@ class EntityAddressLookupModel extends ComponentBean implements IAddressLookup {
     
     IAddressLookupCaller lookupCaller;
     
-    @Service("PersistenceService")
-    def persistenceSvc;
+    def _persistenceSvc = null;
+    def getPersistenceSvc() {
+        if(!_persistenceSvc) {
+            _persistenceSvc= InvokerProxy.getInstance().create("PersistenceService", null, "entity");
+        }
+        return _persistenceSvc;
+    }
     
     public def getAddress() {
         return getValue();

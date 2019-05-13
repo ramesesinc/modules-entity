@@ -12,8 +12,14 @@ class EntityLookupModel extends ComponentBean {
     @Binding
     def binding;
     
-    @Service('PersistenceService')
-    def persistenceSvc; 
+    def _persistenceSvc = null;
+    def getPersistenceSvc() {
+        if(!_persistenceSvc) {
+            _persistenceSvc= InvokerProxy.getInstance().create("PersistenceService", null, "entity");
+        }
+        return _persistenceSvc;
+    }
+
         
     def _entity;
     

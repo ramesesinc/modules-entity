@@ -24,7 +24,7 @@ public class IndividualEntityNameMatchService {
 
 		test.lastname = info.lastname[0..1]+"%";
 
-		def list = em.select("objid,entityno,lastname,firstname,middlename,birthdate,gender,name,address.objid,address.text")
+		def list = em.select("objid,entityno,lastname,firstname,middlename,birthdate,gender,name,address.objid,address.text,email,mobileno")
 			.where("lastname LIKE :lname ", [lname: test.lastname]).list();
 
 		if(!list) return  [];

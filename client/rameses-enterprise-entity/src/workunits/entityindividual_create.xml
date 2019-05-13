@@ -6,6 +6,9 @@
         
         <!-- used to check if we can allow dupplicate -->
         <invoker type="entityindividual:approveduplicate" role="APPROVER" permission="entityindividual.approveduplicate" />
+        
+        <!-- -->
+        <invoker type="entityindividual:createFromCopy" caption="Individual Entity (Create)" action="createFromCopy" target="popup" role="MASTER" permission="entityindividual.create"/>        
     </invokers>
     
     <code class="com.rameses.entity.models.NewIndividualEntityModel" />

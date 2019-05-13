@@ -5,7 +5,7 @@ import com.rameses.services.extended.*;
 
 public class JuridicalEntityNameMatchService {
 
-	@ActiveDB("entityjuridical")
+	@ActiveDB(value="entityjuridical", em="entitydb")
 	def em;
 
 	@Service("DateService")

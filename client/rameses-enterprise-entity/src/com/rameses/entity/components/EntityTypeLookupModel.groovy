@@ -11,8 +11,13 @@ class EntityTypeLookupModel extends ComponentBean {
     @Binding
     def binding;
     
-    @Service("ListService")
-    def listSvc;
+    def _listSvc = null;
+    def getListSvc() {
+        if(!_listSvc) {
+            _listSvc= InvokerProxy.getInstance().create("ListService", null, "entity");
+        }
+        return _listSvc;
+    }
     
     public def getSelectedType() {
         return getValue();

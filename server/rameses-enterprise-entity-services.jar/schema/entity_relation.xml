@@ -1,4 +1,4 @@
-<schema adapter="main">
+<schema adapter="entitydb">
 
 	<element tablename="entity_relation"> 
 		<field name="objid" primary="true"/> 

@@ -1,15 +1,4 @@
-<!--
- 
-create view vw_entityindividual 
-as 
-select ei.*, 
-	e.entityno, e.type, e.name, e.entityname, e.mobileno, e.phoneno, 
-	e.address_objid, e.address_text
-from entityindividual ei 
-	inner join entity e on e.objid=ei.objid 
-
---> 
-<schema>
+<schema adapter="entitydb">
 	
 	<element tablename="vw_entityindividual">
 		<field name="objid" primary="true"/>
@@ -26,6 +15,7 @@ from entityindividual ei
 		<field name="gender" caption="Gender" hidden="true" visible="false" selectable="false" />
 		<field name="mobileno" caption="MobileNo" hidden="true" visible="false" selectable="false" />
 		<field name="phoneno" caption="PhoneNo" hidden="true" visible="false" selectable="false" />
+		<field name="email" caption="Email" />
 	</element>	
 	
 </schema>

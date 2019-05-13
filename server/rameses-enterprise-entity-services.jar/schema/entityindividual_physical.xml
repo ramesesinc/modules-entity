@@ -1,4 +1,4 @@
-<schema adapter="main">
+<schema adapter="entitydb">
 
 	<element tablename="entityindividual_physical">
 		<field name="objid" primary="true"/>

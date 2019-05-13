@@ -1,0 +1,26 @@
+<schema adapter="entitydb">
+	<element  tablename="entity_online_registration">
+		<field name="objid" required="true" primary="true" prefix="ENTONL"/>
+		<field name="lastname" searchable="true" indexed="true" required="true"/>	
+		<field name="firstname"  searchable="true" indexed="true" required="true"/>	
+		<field name="middlename" required="true"/>	
+		<field name="birthdate" required="true"/>
+		<field name="gender" required="true"/>	
+		<field name="mobileno" required="true"/>	
+		<field name="email" required="true"/>	
+		<field name="resident" required="true"/>
+		<field name="address_barangay_objid" />
+		<field name="address_barangay_name" required="true"/>
+		<field name="address_city" />
+		<field name="address_province" />
+		<field name="address_municipality" />
+		<field name="address_bldgno" />
+		<field name="address_bldgname" />
+		<field name="address_unitno" />
+		<field name="address_street" />
+		<field name="address_subdivision" />
+		<field name="dtregistered" type="timestamp"/>
+		<field name="remarks" />
+		<field name="idphoto" />
+	</element>
+</schema>

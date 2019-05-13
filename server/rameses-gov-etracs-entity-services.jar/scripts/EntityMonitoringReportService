@@ -4,7 +4,7 @@ import com.rameses.services.extended.*;
 
 class EntityMonitoringReportService 
 {
-	@ActiveDB('entity_report')
+	@ActiveDB(value='entity_report', em="entitydb")
 	def em
 
 
