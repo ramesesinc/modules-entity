@@ -1,0 +1,55 @@
+import com.rameses.annotations.*
+import com.rameses.common.*
+import java.rmi.server.UID;
+import com.rameses.util.*;
+import com.rameses.io.*;
+
+class EntityFinderServiceOldCode {
+
+	@DataContext("entity")
+	def	em; 
+
+	@Service('PersistenceService')
+	def persistenceSvc;	
+
+	@ActiveDB(value="entityindividual", em="entitydb")
+	def em_individual; 
+
+	@ActiveDB(value="entityjuridical", em="entitydb")
+	def em_juridical; 
+
+	@ActiveDB(value="entitymultiple", em="entitydb")
+	def em_multiple; 
+
+	@ActiveDB(value="entitymember", em="entitydb")
+	def em_member;
+
+	@DataContext(dynamic=true)
+	def dynEm;
+
+
+	@ProxyMethod
+	public def findByEntityNo( o ) { 
+		def type = o.remove("type");
+		def pattern = o.remove("fieldmatch");
+		if( !type ) {
+			type = em.select('type').find( o ).val(); 
+			if( type == null ) {
+				throw new Exception("Entity not found");
+			}
+		}
+		def schemaname = 'entity' + type?.toString().toLowerCase();
+		def _em = dynEm.lookup( schemaname, "entitydb" );				
+		def p = _em.find( o ).first();
+		if( !p ) throw new Exception("Entity not found");
+		if(pattern) {
+			def vv = [:]
+			p.each { k,v->
+				if( k.matches(pattern) ) vv.put(k,v);
+			}
+			p = vv;
+		}
+		return p;
+	} 
+
+}

@@ -7,49 +7,22 @@ import com.rameses.io.*;
 class EntityFinderService {
 
 	@DataContext("entity")
-	def	em; 
-
-	@Service('PersistenceService')
-	def persistenceSvc;	
-
-	@ActiveDB(value="entityindividual", em="entitydb")
-	def em_individual; 
-
-	@ActiveDB(value="entityjuridical", em="entitydb")
-	def em_juridical; 
-
-	@ActiveDB(value="entitymultiple", em="entitydb")
-	def em_multiple; 
-
-	@ActiveDB(value="entitymember", em="entitydb")
-	def em_member;
+	def entityEm;
 
 	@DataContext(dynamic=true)
-	def dynEm;
-
+    def db;
 
 	@ProxyMethod
-	public def findByEntityNo( o ) { 
-		def type = o.remove("type");
-		def pattern = o.remove("fieldmatch");
-		if( !type ) {
-			type = em.select('type').find( o ).val(); 
-			if( type == null ) {
-				throw new Exception("Entity not found");
-			}
+	public def find(  def finder ) {
+		def ent = entityEm.find( finder ).select("objid,type").first();
+		if(!ent) return null;
+		def n = "entity"+ent.type.toLowerCase().trim();
+		def em = db.lookup( n );
+		def ext = em.find( [ objid: ent.objid ] ).first(1);
+		if(ext) {
+			ent.putAll( ext );
 		}
-		def schemaname = 'entity' + type?.toString().toLowerCase();
-		def _em = dynEm.lookup( schemaname, "entitydb" );				
-		def p = _em.find( o ).first();
-		if( !p ) throw new Exception("Entity not found");
-		if(pattern) {
-			def vv = [:]
-			p.each { k,v->
-				if( k.matches(pattern) ) vv.put(k,v);
-			}
-			p = vv;
-		}
-		return p;
-	} 
+		return ent;
+	}
 
 }

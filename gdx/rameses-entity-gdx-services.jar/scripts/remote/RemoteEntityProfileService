@@ -22,7 +22,8 @@ public class RemoteEntityProfileService {
 
 	@ProxyMethod
 	public def findByIdno(data) {
-		def o = profileSvc.findByIdno( [idno: data.idno] );
+		//def o = profileSvc.findByIdno( [idno: data.idno] );
+		throw new Exception("Id not found");
 		return o;
 	}
 

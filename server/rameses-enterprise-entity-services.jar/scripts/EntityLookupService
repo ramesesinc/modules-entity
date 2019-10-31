@@ -17,4 +17,11 @@ class EntityLookupService {
 		m.orderBy = 'entityname'; 
 		return querySvc.getList( m ); 
 	} 
+
+	@ProxyMethod
+	public def find( def params ) {
+		
+	}
+
+
 }

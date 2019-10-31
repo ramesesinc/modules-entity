@@ -40,8 +40,6 @@ class EntityLookupModel extends ComponentBean {
         String obj = "entity";
         def etype = getEntityType();
         
-        
-        
         if(etype == null ) {
             //do nothing...
         }
@@ -71,7 +69,7 @@ class EntityLookupModel extends ComponentBean {
     
     void fireOnselect( o ) { 
         if(o!=null) {
-            def schemaname = 'entity' + (o.type ? o.type :'').toLowerCase(); 
+            def schemaname = 'entity' + (o.type ? o.type :'').toLowerCase();
             o = persistenceSvc.read([ _schemaname: schemaname, objid: o.objid ]); 
         }
         if ( onselect ) { 
