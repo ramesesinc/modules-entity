@@ -41,6 +41,9 @@ public class MultipleEntityPage extends javax.swing.JPanel {
         xButton1 = new com.rameses.rcp.control.XButton();
         xButton2 = new com.rameses.rcp.control.XButton();
 
+        xTabbedPane1.setHandler("entitymultiple:section");
+        xTabbedPane1.setDynamic(true);
+
         xFormPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         xLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));

@@ -35,6 +35,10 @@
   </Layout>
   <SubComponents>
     <Container class="com.rameses.rcp.control.XTabbedPane" name="xTabbedPane1">
+      <Properties>
+        <Property name="handler" type="java.lang.String" value="entityjuridical:section"/>
+        <Property name="dynamic" type="boolean" value="true"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -57,7 +61,7 @@
                           <Component id="xFormPanel2" alignment="0" pref="571" max="32767" attributes="1"/>
                           <Component id="xFormPanel3" alignment="1" pref="571" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace pref="61" max="32767" attributes="0"/>
+                      <EmptySpace pref="73" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -70,7 +74,7 @@
                       <Component id="xFormPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="xFormPanel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
