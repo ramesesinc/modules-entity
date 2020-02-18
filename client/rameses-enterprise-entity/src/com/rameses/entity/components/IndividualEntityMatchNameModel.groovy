@@ -63,6 +63,13 @@ class IndividualEntityMatchNameModel extends ComponentBean {
         matchList =  matchService.getMatches(entity);
         entity.middlename = mname;
         
+        def fi = (matchList ? matchList.first() : [:]);
+        if ( fi.match && fi.match == 100 ) {
+            if ( entity.lastname && entity.firstname && entity.middlename && !fi.middlename ) {
+                matchList.remove(fi); 
+            }
+        }
+        
         if( entity.objid ) {
             def r = matchList.find{ it.objid == entity.objid };
             if(r) matchList.remove(r);
