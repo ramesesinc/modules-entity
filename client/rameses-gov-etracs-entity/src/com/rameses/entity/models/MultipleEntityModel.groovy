@@ -53,7 +53,6 @@ class MultipleEntityModel extends CrudFormModel {
 
         onCommitItem: {item-> 
             rebuildNames();
-            binding.refresh('entity.name');  
         }, 
 
         onAddItem: {item-> 
@@ -61,15 +60,20 @@ class MultipleEntityModel extends CrudFormModel {
             item.entityid = entity.objid; 
             entity.members.add(item); 
             rebuildNames();
-            binding.refresh('entity.name');
         }, 
+
+        validate: {li -> 
+            def item = li.item;
+            if (!item.member || !item.member.objid) {
+                throw new Exception('Member must be specified.');
+            }
+        },
 
         onRemoveItem: {item-> 
             if (!MsgBox.confirm('Are you sure you want to remove this item?')) return false;
 
             entity.members.remove(item); 
             rebuildNames(); 
-            binding.refresh('entity.name'); 
             return true;
         }
     ] as EditorListModel;             
@@ -91,6 +95,8 @@ class MultipleEntityModel extends CrudFormModel {
         def oldfullname = entity.fullname; 
         entity.fullname = buffer.toString();
         if (entity.name == oldfullname) entity.name = entity.fullname;  
+        binding.refresh('entity.name');
+        binding.requestFocus('selectedEntity');
     } 
 
 

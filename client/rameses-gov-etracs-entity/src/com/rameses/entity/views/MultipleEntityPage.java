@@ -100,7 +100,7 @@ public class MultipleEntityPage extends javax.swing.JPanel {
                 , new Object[]{"width", 100}
                 , new Object[]{"minWidth", 0}
                 , new Object[]{"maxWidth", 0}
-                , new Object[]{"required", true}
+                , new Object[]{"required", false}
                 , new Object[]{"resizable", true}
                 , new Object[]{"nullWhenEmpty", true}
                 , new Object[]{"editable", true}
@@ -141,6 +141,7 @@ public class MultipleEntityPage extends javax.swing.JPanel {
         xButton2.setText("View Entity");
 
         xButton3.setDisableWhen("#{mode == 'read'}");
+        xButton3.setMnemonic('I');
         xButton3.setName("addIndividual"); // NOI18N
         xButton3.setImmediate(true);
         xButton3.setText("New Individual");
