@@ -62,6 +62,8 @@
                               <Component id="xButton1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="xButton2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="xButton3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="84" max="32767" attributes="0"/>
@@ -84,6 +86,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="xButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="xButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="xButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
@@ -192,6 +195,14 @@
                 <Property name="name" type="java.lang.String" value="viewEntity" noResource="true"/>
                 <Property name="immediate" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="View Entity"/>
+              </Properties>
+            </Component>
+            <Component class="com.rameses.rcp.control.XButton" name="xButton3">
+              <Properties>
+                <Property name="disableWhen" type="java.lang.String" value="#{mode == &apos;read&apos;}"/>
+                <Property name="name" type="java.lang.String" value="addIndividual" noResource="true"/>
+                <Property name="immediate" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="New Individual"/>
               </Properties>
             </Component>
           </SubComponents>

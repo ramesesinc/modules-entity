@@ -1,4 +1,5 @@
-<workunit schemaName="entitymultiple">
+<workunit schemaName="entitymultiple" 
+    closeOnSave="true">
     <invokers>
         <invoker type="entitymultiple:open" caption="Multiple Entity" action="open"  
                  role="MASTER" windowTitle="Entity: #{entity.entityno}" index="-1" 

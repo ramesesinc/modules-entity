@@ -107,4 +107,8 @@ class MultipleEntityModel extends CrudFormModel {
         op.target = "popup";
         return op;
     }
+
+    def addIndividual() {
+        return Inv.lookupOpener('entityindividual:create', [:]);
+    }
 }
