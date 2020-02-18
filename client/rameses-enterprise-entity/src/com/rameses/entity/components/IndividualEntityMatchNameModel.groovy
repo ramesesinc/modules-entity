@@ -57,7 +57,12 @@ class IndividualEntityMatchNameModel extends ComponentBean {
     }
     
     boolean checkHasMatch() {
+        def mname = entity.middlename;
+        if ( !mname ) entity.middlename = " ";
+        
         matchList =  matchService.getMatches(entity);
+        entity.middlename = mname;
+        
         if( entity.objid ) {
             def r = matchList.find{ it.objid == entity.objid };
             if(r) matchList.remove(r);
