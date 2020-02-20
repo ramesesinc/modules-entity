@@ -8,6 +8,10 @@
         <invoker type="entitymultiple:create" caption="Multiple Entity" action="create"  
                  role="MASTER" windowTitle="New Multiple Entity" index="-1" 
                  formTitle="New Multiple Entity"/>        
+
+         <invoker type="entitymultiple:create2" caption="Multiple Entity" action="create"  
+                 role="MASTER" windowTitle="New Multiple Entity" 
+                 formTitle="New Multiple Entity"/>        
         
         <invoker  type="quick_launcher" code="TP03" caption="Multiple Entity" action="create"  
                  role="MASTER" windowTitle="New Multiple Entity" index="-1" 

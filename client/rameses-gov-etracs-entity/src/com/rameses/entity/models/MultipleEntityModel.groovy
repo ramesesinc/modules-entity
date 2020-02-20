@@ -10,8 +10,23 @@ import java.rmi.server.*;
 class MultipleEntityModel extends CrudFormModel {
     
     @SubWindow 
-    def window; 
-    
+    def window;
+
+    def fromMultiple = false;
+
+    @FormId
+    @FormTitle
+    public String getFormId(){
+        if (mode == 'create' && fromMultiple) {
+            return 'Multiple Entity (New)'
+        } else if (mode == 'create') {
+             return 'Multiple Entity'
+        }
+        return 'Realty Tax Ledger : ' + entity.tdno 
+    }
+
+
+
     def getLookupMember() {
         return InvokerUtil.lookupOpener('entity:lookup', ['query.type': 'INDIVIDUAL,JURIDICAL']); 
     }             
@@ -46,7 +61,9 @@ class MultipleEntityModel extends CrudFormModel {
 
         onColumnUpdate: {item,colname-> 
             if (colname == 'member') { 
-                def o = entity.members.find{ it.member.objid == item.member.objid } 
+                def o = entity.members.find{ 
+                    it.member.objid == item.member.objid && it.objid != item.objid
+                } 
                 if (o) throw new Exception('This member already exist in the list. Please select another one.'); 
             } 
         },
@@ -73,6 +90,11 @@ class MultipleEntityModel extends CrudFormModel {
             if (!MsgBox.confirm('Are you sure you want to remove this item?')) return false;
 
             entity.members.remove(item); 
+            def deletedKey = 'members::deleted';
+            if (!entity[deletedKey]) {
+                entity[deletedKey] = [];
+            }
+            entity[deletedKey] << item;
             rebuildNames(); 
             return true;
         }
@@ -114,7 +136,32 @@ class MultipleEntityModel extends CrudFormModel {
         return op;
     }
 
+    def addMember = {newMember -> 
+        def member = [:]
+        member.objid = 'ME' + new java.rmi.server.UID();
+        member.entityid = newMember.objid;
+        member.itemno = entity.members.size() + 1;
+        member.prefix = '';
+        member.member = newMember;
+        member.suffix = '';
+        entity.members << member;
+        rebuildNames();
+        listHandler.reload();
+    }
+
     def addIndividual() {
-        return Inv.lookupOpener('entityindividual:create', [:]);
+        return Inv.lookupOpener('entityindividual:create', [onselect: addMember]);
+    }
+
+
+    def inv; 
+    def addMultiple() {
+        inv = Inv.lookupOpener('entitymultiple:create', [fromMultiple: true]);
+        inv.target = "popup";
+        return inv;
+    }
+
+    void refresh() {
+        addMember(inv.handle.entity);
     }
 }
